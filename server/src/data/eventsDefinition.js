@@ -1,8 +1,12 @@
 export const event = {
   title: '',
-  subtitle: '',
-  presenter: '',
-  note: '',
+  eventTitles: [
+    {
+      subtitle: '',
+      presenter: '',
+      note: '',
+    },
+  ],
   timeStart: 0,
   timeEnd: 0,
   isPublic: false,

@@ -135,24 +135,63 @@
 
 /* =============== TITLES =============== */
 
-.titleContainer {
+.titles {
+  /* height: 100%; */
   grid-area: text;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
+.childTitle {
+  display: flex;
+}
+
+.childButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.titleContainer {
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-  width: 100%;
+  border-radius: 4px 4px 0 0;
   display: block;
+}
+
+.childContainer {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0 4px 4px 0;
+  display: block;
+}
+
+.add {
+  background-color: #ff8b0066;
+  text-align: center;
+  border-radius: 0 0 8px 8px;
+  cursor: pointer;
+}
+
+.actions {
+  width: 1em;
+  text-align: center;
+  background-color: #ff000066;
+  border-radius: 8px 0 0 8px;
+  margin-left: 1em;
 }
 
 .oscLabel {
   color: #4bffabcc;
   font-size: 0.8em;
-  float: right;
-  padding-right: 1em;
+  padding-left: 1em;
   -webkit-user-select: text;
   user-select: text;
+}
+
+.spacer {
+  width: 1em;
 }
 
 /* ================ MORE ================ */

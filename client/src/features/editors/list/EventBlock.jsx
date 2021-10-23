@@ -12,10 +12,14 @@ import { millisToMinutes } from 'common/dateConfig';
 import style from './EventBlock.module.css';
 import { SelectCollapse, HandleCollapse } from 'app/context/collapseAtom';
 import { useAtom } from 'jotai';
+import EventTitlesSingle from './EventTitlesSingle';
+import EventTitlesMultiple from './EventTitlesMultiple';
 
 const ExpandedBlock = (props) => {
   const { provided, data, eventIndex, next, delay, delayValue, actionHandler } =
     props;
+
+  console.log(`data.eventTitles`, data.eventTitles);
 
   const oscid = data.id.length > 4 ? '...' : data.id;
 
@@ -48,44 +52,24 @@ const ExpandedBlock = (props) => {
         />
       </div>
 
-      <div className={style.titleContainer}>
-        <EditableText
-          label='Title'
-          defaultValue={data.title}
-          placeholder='Add Title'
-          submitHandler={(v) =>
-            actionHandler('update', { field: 'title', value: v })
-          }
-        />
-        <EditableText
-          label='Presenter'
-          defaultValue={data.presenter}
-          placeholder='Add Presenter name'
-          submitHandler={(v) =>
-            actionHandler('update', { field: 'presenter', value: v })
-          }
-        />
-        <EditableText
-          label='Subtitle'
-          defaultValue={data.subtitle}
-          placeholder='Add Subtitle'
-          submitHandler={(v) =>
-            actionHandler('update', { field: 'subtitle', value: v })
-          }
-        />
-        <EditableText
-          label='Note'
-          defaultValue={data.note}
-          placeholder='Add Note'
-          style={{ color: '#d69e2e' }}
-          submitHandler={(v) =>
-            actionHandler('update', { field: 'note', value: v })
-          }
-        />
-        <span className={style.oscLabel}>
-          {`/ontime/goto ${eventIndex + 1}  << OSC >> /ontime/gotoid ${oscid}`}
-        </span>
+      <div className={style.titles}>
+        {2 > data.eventTitles?.length ? (
+          <EventTitlesSingle
+            data={data.eventTitles[0]}
+            actionHandler={actionHandler}
+            eventIndex={eventIndex}
+            oscid={oscid}
+          />
+        ) : (
+          <EventTitlesMultiple
+            data={data.eventTitles[0]}
+            actionHandler={actionHandler}
+            eventIndex={eventIndex}
+            oscid={oscid}
+          />
+        )}
       </div>
+
       <Icon
         className={style.more}
         as={FiChevronUp}
